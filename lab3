@@ -1,0 +1,24 @@
+import pandas as pd
+import numpy as np
+data=pd.read_excel('C:\\Users\\kushal\\Downloads\\Lab Session1 Data.xlsx')
+df=pd.DataFrame(data)
+print(data)
+A = df[["Candies (#)","Mangoes (Kg)","Milk Packets (#)"]].values
+print(A)
+C=df[["Payment (Rs)"]].values
+print(C)
+print(f"dimensionality:{np.shape(A)[1]}")
+print(f"no of vectors:{np.shape(A)[0]}")
+print(np.linalg.matrix_rank(A))
+print(f"pinv{np.linalg.pinv(A)}")
+##
+data1=pd.read_excel('C:\\Users\\kushal\\Downloads\\Lab Session1 Data.xlsx',sheet_name=1)
+df1=pd.DataFrame(data1)
+print(df1)
+C=(df1[["Price"]].values)
+print(np.mean(C))
+print(np.var(C))
+wed=df1[df1["Day"]=="Wed"]
+print(wed["Price"].mean())
+apr=df1[df1["Month"]=="Apr"]
+print(apr["Price"].mean())
