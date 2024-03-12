@@ -1,27 +1,29 @@
+# Function to perform label encoding on categorical data
 def label_encode(data):
+    # Extract unique values from the input data
     unique_values = list(set(data))
+    # Create a dictionary to map each unique value to an integer
     encoding_dict = {val: i for i, val in enumerate(unique_values)}
+    # Encode the data using the created dictionary
     encoded_data = [encoding_dict[val] for val in data]
-    
+
     return encoded_data, encoding_dict
 
-
+# User input for categorical values
 user_input = input("Enter categorical values separated by spaces: ")
-
-
 data = user_input.split()
 
-
+# Apply label encoding and display results
 encoded_data, encoding_dict = label_encode(data)
-
 print("Original Data:", data)
 print("Encoded Data:", encoded_data)
 
-print("\nEncoding Dictionary:") 
+# Display the encoding dictionary
+print("\nEncoding Dictionary:")
 for key, value in encoding_dict.items():
     print(f"{key}: {value}")
-
-%%
+%% 
+# Functions to calculate Euclidean and Manhattan distances between two vectors
 import math
 
 def euclidean_distance(vector1, vector2):
@@ -40,23 +42,28 @@ def manhattan_distance(vector1, vector2):
 
     distance = 0
     for i in range(len(vector1)):
-        distance += (vector1[i] - vector2[i])
+        distance += abs(vector1[i] - vector2[i])
 
-    return distance if distance >= 0 else -distance
+    return distance
 
+# Example vectors
 vector_a = [1, 2, 3]
 vector_b = [4, 5, 6]
 
+# Calculate and display distances
 euclidean_dist = euclidean_distance(vector_a, vector_b)
 manhattan_dist = manhattan_distance(vector_a, vector_b)
 
 print("Euclidean Distance:", euclidean_dist)
 print("Manhattan Distance:", manhattan_dist)
-
 %% 
- def onehotencode(data):
+# Function to perform one-hot encoding on categorical data
+def onehotencode(data):
+    # Extract unique values from the input data
     unique_values = list(set(data))
+    # Create a dictionary to map each unique value to an index
     encoding_dict = {value: index for index, value in enumerate(unique_values)}
+    # Encode the data using one-hot encoding
     encoded_data = []
     for val in data:
         encoding = [0] * len(unique_values)
@@ -64,22 +71,19 @@ print("Manhattan Distance:", manhattan_dist)
         encoded_data.append(encoding)
     return encoded_data, encoding_dict
 
+# User input for categorical values
+user_input = input("Enter categorical values separated by spaces: ")
+categorical_data = user_input.split()
 
-user_input = input("Enter categorical values: ")
-
-
-
-categorical_data=user_input.split()
-
+# Apply one-hot encoding and display results
 encoded_data, encoding_dict = onehotencode(categorical_data)
-
 print("Original Data:", categorical_data)
 print("One-Hot Encoded Data:")
 for data_point in encoded_data:
     print(data_point)
 
+# Display the encoding dictionary
 print("\nEncoding Dictionary:")
 for key, value in encoding_dict.items():
     print(f"{key}: {value}")
-
 
